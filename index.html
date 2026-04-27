@@ -3,75 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV FAMILIA PRADA - OFICIAL</title>
+    <title>TV PERÚ - FAMILIA PRADA</title>
     <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
     <style>
         :root { --verde: #00ff88; --fondo: #0a0a0a; --panel: #161616; }
         body { background: var(--fondo); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
         
-        #sidebar { width: 280px; background: var(--panel); border-right: 1px solid #333; display: flex; flex-direction: column; padding: 15px; overflow-y: auto; }
-        .header { text-align: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 15px; }
-        .header h1 { color: var(--verde); font-size: 1.2em; margin: 0; }
+        #sidebar { width: 280px; background: var(--panel); border-right: 1px solid #333; display: flex; flex-direction: column; padding: 15px; }
+        .header { text-align: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
+        .header h1 { color: var(--verde); font-size: 1.2em; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
         
-        .canal-btn { width: 100%; background: #222; color: #ccc; border: 1px solid #333; padding: 12px; margin-bottom: 8px; text-align: left; cursor: pointer; border-radius: 6px; transition: 0.2s; font-size: 14px; }
+        .canal-btn { width: 100%; background: #222; color: #eee; border: 1px solid #333; padding: 15px; margin-bottom: 10px; text-align: left; cursor: pointer; border-radius: 8px; transition: 0.2s; font-size: 14px; display: flex; align-items: center; }
         .canal-btn:hover { background: var(--verde); color: black; font-weight: bold; transform: translateX(5px); }
-        
+        .canal-btn i { margin-right: 10px; }
+
         #player-wrapper { flex-grow: 1; display: flex; flex-direction: column; background: #000; }
-        #player { width: 100%; height: 80vh; background: #000; }
-        .footer { padding: 20px; border-top: 1px solid #222; }
-        .category { font-size: 10px; color: var(--verde); opacity: 0.7; margin: 15px 0 8px 5px; text-transform: uppercase; letter-spacing: 1px; }
+        #player { width: 100%; height: 85vh; background: #000; }
+        .footer { padding: 15px; background: var(--panel); border-top: 1px solid #222; text-align: center; }
+        .status { color: var(--verde); font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div id="sidebar">
     <div class="header">
-        <h1>TV FAMILIA PRADA</h1>
-        <small style="color: #666;">Panel de Control v3.0</small>
+        <h1>FAMILIA PRADA</h1>
+        <small style="color: #666;">TV NACIONAL PERÚ</small>
     </div>
     
-    <div class="category">Canales Nacionales</div>
-    <button class="canal-btn" onclick="cambiarCanal('https://sc.latina.pe/live/latina/playlist.m3u8')">📺 Latina HD</button>
-    <button class="canal-btn" onclick="cambiarCanal('https://atv.pe/live/atv/playlist.m3u8')">📺 ATV HD</button>
-    <button class="canal-btn" onclick="cambiarCanal('https://panamericana.pe/live/panamericana/playlist.m3u8')">📺 Panamericana</button>
-    <button class="canal-btn" onclick="cambiarCanal('https://cdnb.tvperu.gob.pe/live/tvperu/playlist.m3u8')">📺 TV Perú</button>
-    <button class="canal-btn" onclick="cambiarCanal('https://cdn.btvperu.com/live/betel/playlist.m3u8')">📺 Betel TV</button>
-
-    <div class="category">Películas Libres</div>
-    <button class="canal-btn" onclick="cambiarCanal('https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/58a33a05f17f4116938927a4/master.m3u8?deviceType=web')">🎬 Cine Acción</button>
-    <button class="canal-btn" onclick="cambiarCanal('https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5a2ec3b73551f107f9c2d765/master.m3u8?deviceType=web')">🎬 Cine Terror</button>
-    
-    <div class="category">Música y Otros</div>
-    <button class="canal-btn" onclick="cambiarCanal('https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/590391696b99097970d47781/master.m3u8?deviceType=web')">🎵 MTV Music</button>
+    <button class="canal-btn" onclick="cambiarCanal('https://redirector.rudo.video/hls-video/567ffde3fa319fadf3419efda25619456231dfea/latina/latina.smil/playlist.m3u8')">🔴 LATINA HD</button>
+    <button class="canal-btn" onclick="cambiarCanal('https://d2tr6nyh7909as.cloudfront.net/atv/playlist.m3u8')">🔴 ATV HD</button>
+    <button class="canal-btn" onclick="cambiarCanal('https://cdnb.tvperu.gob.pe/live/tvperu/playlist.m3u8')">🔴 TV PERÚ (OFICIAL)</button>
+    <button class="canal-btn" onclick="cambiarCanal('https://panamericana.pe/live/panamericana/playlist.m3u8')">🔴 PANAMERICANA</button>
+    <button class="canal-btn" onclick="cambiarCanal('https://cdn.btvperu.com/live/betel/playlist.m3u8')">🔴 BETEL TV</button>
+    <button class="canal-btn" onclick="cambiarCanal('https://5a39626354366.streamlock.net/ucayalina/ucayalina/playlist.m3u8')">🔴 UCAYALINA TV</button>
 </div>
 
 <div id="player-wrapper">
     <div id="player"></div>
     <div class="footer">
-        <h3 id="info-text" style="color: var(--verde); margin: 0;">Sintonizador Listo</h3>
-        <p style="color: #444; font-size: 12px; margin: 5px 0 0;">Señal estable desde GitHub para la Familia Prada</p>
+        <div class="status" id="info-text">SISTEMA EN LÍNEA - SELECCIONE CANAL</div>
+        <div style="color: #444; font-size: 11px; margin-top: 5px;">Admin: Josué Prada | Conexión Directa</div>
     </div>
 </div>
 
 <script>
-    // Configuración inicial del reproductor
+    // Inicializar reproductor con TV Perú por defecto
     var player = new Clappr.Player({
-        source: 'https://cdnb.tvperu.gob.pe/live/tvperu/playlist.m3u8', // Inicia con TV Perú que es el más estable
+        source: 'https://cdnb.tvperu.gob.pe/live/tvperu/playlist.m3u8',
         parentId: '#player',
         width: '100%',
         height: '100%',
-        autoPlay: true,
+        autoPlay: false,
         mute: false,
-        mediacontrol: {seekbar: var(--verde), buttons: var(--verde)}
+        placeholder: "https://i.imgur.com/8N4p4tO.png",
+        mediacontrol: {seekbar: "#00ff88", buttons: "#00ff88"}
     });
 
     function cambiarCanal(url) {
-        document.getElementById('info-text').innerText = "Cargando señal...";
+        document.getElementById('info-text').innerText = "SINTONIZANDO SEÑAL...";
         player.load(url);
         player.play();
         setTimeout(() => {
-            document.getElementById('info-text').innerText = "Transmitiendo en Vivo";
-        }, 2000);
+            document.getElementById('info-text').innerText = "TRANSMITIENDO EN VIVO";
+        }, 3000);
     }
 </script>
 
