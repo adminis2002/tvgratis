@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV FAMILIA PRADA - PRO</title>
+    <title>TV FAMILIA PRADA - VIP</title>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <style>
         :root { --v: #00ff88; --b: #050505; }
         body { background: var(--b); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
@@ -12,33 +14,40 @@
         .btn { width: 100%; background: #1a1a1a; color: #eee; border: 1px solid #333; padding: 12px; margin-bottom: 8px; text-align: left; cursor: pointer; border-radius: 6px; font-size: 13px; }
         .btn:hover { background: var(--v); color: #000; font-weight: bold; }
         #screen { flex-grow: 1; display: flex; flex-direction: column; background: #000; }
-        iframe { width: 100%; height: 100%; border: none; }
-        .footer { padding: 10px; background: #111; border-top: 1px solid #222; text-align: center; color: var(--v); font-size: 12px; }
+        .video-js { width: 100% !important; height: 85vh !important; }
+        .footer { padding: 15px; background: #111; border-top: 1px solid #222; text-align: center; color: var(--v); font-size: 12px; }
     </style>
 </head>
 <body>
 
 <div id="sidebar">
     <div class="header"><h1>FAMILIA PRADA</h1></div>
-    <div style="font-size: 10px; color: #555; margin-bottom: 10px;">SEÑAL NACIONAL VIP</div>
+    <div style="font-size: 10px; color: #555; margin-bottom: 10px;">SEÑAL NACIONAL ESTABLE</div>
     
-    <button class="btn" onclick="load('https://pepper-tube.com/player/embed/latina')">🔴 LATINA HD</button>
-    <button class="btn" onclick="load('https://pepper-tube.com/player/embed/americatv')">🔴 AMÉRICA TV</button>
-    <button class="btn" onclick="load('https://pepper-tube.com/player/embed/atv')">🔴 ATV HD</button>
-    <button class="btn" onclick="load('https://pepper-tube.com/player/embed/panamericana')">🔴 PANAMERICANA</button>
-    <button class="btn" onclick="load('https://pepper-tube.com/player/embed/willax')">🔴 WILLAX TV</button>
-    <button class="btn" onclick="load('https://pepper-tube.com/player/embed/tvperu')">🔴 TV PERÚ</button>
+    <button class="btn" onclick="play('https://redirector.rudo.video/hls-video/567ffde3fa319fadf3419efda25619456231dfea/latina/latina.smil/playlist.m3u8')">🔴 LATINA HD</button>
+    <button class="btn" onclick="play('https://d1fcl8p169st90.cloudfront.net/out/v1/37482862377b427b871c841362e1c944/index.m3u8')">🔴 AMÉRICA TV</button>
+    <button class="btn" onclick="play('https://d2tr6nyh7909as.cloudfront.net/atv/playlist.m3u8')">🔴 ATV HD</button>
+    <button class="btn" onclick="play('https://d2tr6nyh7909as.cloudfront.net/panamericana/playlist.m3u8')">🔴 PANAMERICANA</button>
+    <button class="btn" onclick="play('https://willax.tv/live/playlist.m3u8')">🔴 WILLAX TV</button>
+    <button class="btn" onclick="play('https://cdnb.tvperu.gob.pe/live/tvperu/playlist.m3u8')">🔴 TV PERÚ</button>
 </div>
 
 <div id="screen">
-    <iframe id="reproductor" src="about:blank" allowfullscreen allow="autoplay"></iframe>
-    <div class="footer">ADMIN: JOSUE PRADA | SISTEMA DE TRANSMISIÓN DIRECTA</div>
+    <video id="my-video" class="video-js vjs-big-play-centered" controls autoplay preload="auto"></video>
+    <div class="footer" id="msg">ADMIN: JOSUE PRADA | SISTEMA NACIONAL</div>
 </div>
 
 <script>
-    function load(url) {
-        // El iframe salta el error de manifestLoadError porque el servidor pepper-tube hace el trabajo pesado
-        document.getElementById('reproductor').src = url;
+    var player = videojs('my-video');
+
+    function play(url) {
+        document.getElementById('msg').innerText = "CONECTANDO A LA TRABA DE RED...";
+        player.src({
+            src: url,
+            type: 'application/x-mpegURL'
+        });
+        player.play();
+        setTimeout(() => { document.getElementById('msg').innerText = "EN VIVO - SEÑAL PROTEGIDA"; }, 2000);
     }
 </script>
 </body>
